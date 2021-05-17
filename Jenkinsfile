@@ -15,13 +15,14 @@ pipeline{
       steps{
         script{
           def pom = readMavenPom file: 'pom.xml'
+          def repository = pom.version.endsWith("SNAPSHOT") ? 'javahome-snapshot' : 'javahome-release'
           nexusArtifactUploader artifacts: 
           [[artifactId: 'myweb', classifier: '', file: "target/myweb-${pom.version}.war", type: 'war']], 
           credentialsId: 'nexus3', 
           groupId: 'in.javahome', 
           nexusUrl: '172.31.4.89:8081', 
           nexusVersion: 'nexus3', protocol: 'http', 
-          repository: 'javahome-snapshot', 
+          repository: repository, 
           version: pom.version
         }
       }
