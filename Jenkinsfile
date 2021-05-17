@@ -14,7 +14,7 @@ pipeline{
     stage('Upload To Nexus'){
       steps{
         nexusArtifactUploader artifacts: 
-          [[artifactId: 'myweb', classifier: '', file: 'myweb-0.0.1-SNAPSHOT.war', type: 'war']], 
+          [[artifactId: 'myweb', classifier: '', file: 'target/myweb-0.0.1-SNAPSHOT.war', type: 'war']], 
           credentialsId: 'nexus3', 
           groupId: 'in.javahome', 
           nexusUrl: '172.31.4.89:8081', 
