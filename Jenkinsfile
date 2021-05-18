@@ -6,12 +6,18 @@ pipeline{
   }
   stages{
     stage('Maven Build'){
+      when {
+        branch "dev"
+      }
       steps{
         sh "mvn clean package"
       }
     }
 
     stage('Upload To Nexus'){
+      when {
+        branch "dev"
+      }
       steps{
         script{
           def pom = readMavenPom file: 'pom.xml'
@@ -34,6 +40,24 @@ pipeline{
       }
       steps{
         echo "deploy to dev environment"
+      }
+    }
+
+    stage('uat-deploy'){
+      when {
+        branch "uat"
+      }
+      steps{
+        echo "deploy to uat environment"
+      }
+    }
+
+    stage('prd-deploy'){
+      when {
+        branch "master"
+      }
+      steps{
+        echo "deploy to prod environment"
       }
     }
   }
