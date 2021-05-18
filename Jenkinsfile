@@ -7,7 +7,7 @@ pipeline{
   stages{
     stage('Maven Build'){
       when {
-        branch "dev"
+        branch "develop"
       }
       steps{
         sh "mvn clean package"
@@ -16,7 +16,7 @@ pipeline{
 
     stage('Upload To Nexus'){
       when {
-        branch "dev"
+        branch "develop"
       }
       steps{
         script{
@@ -36,7 +36,7 @@ pipeline{
     
     stage('dev-deploy'){
       when {
-        branch "dev"
+        branch "develop"
       }
       steps{
         echo "deploy to dev environment"
