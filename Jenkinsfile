@@ -1,9 +1,6 @@
 pipeline{
   agent any
 
-  tools{
-    maven 'maven3'
-  }
   stages{
     stage('Maven Build'){
       when {
@@ -48,6 +45,8 @@ pipeline{
         branch "uat"
       }
       steps{
+        sh "curl -u admin:admin -X GET 'http://65.0.19.206:8081/service/rest/v1/repositories'"
+        // How do you get latest artifact from nexus?
         echo "deploy to uat environment"
       }
     }
@@ -57,6 +56,7 @@ pipeline{
         branch "master"
       }
       steps{
+        // How do you get latest artifact from nexus?
         echo "deploy to prod environment"
       }
     }
