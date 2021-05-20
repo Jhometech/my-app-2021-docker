@@ -23,7 +23,7 @@ pipeline{
           [[artifactId: 'myweb', classifier: '', file: "target/myweb-${pom.version}.war", type: 'war']], 
           credentialsId: 'nexus3', 
           groupId: 'in.javahome', 
-          nexusUrl: '172.31.4.89:8081', 
+          nexusUrl: '172.31.11.107:8081', 
           nexusVersion: 'nexus3', protocol: 'http', 
           repository: repository, 
           version: pom.version
