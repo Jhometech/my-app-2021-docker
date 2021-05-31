@@ -25,9 +25,10 @@ pipeline{
     }
 
     stage('dev-deploy'){
-
       steps{
-        echo "deploy to uat environment"
+        sshagent(['docker-dev']) {
+            sh "ssh ec2-user@172.31.47.65 docker run -d -p 8080:8080 kammana/2021myapp:v1"
+        }
       }
     }
   }
