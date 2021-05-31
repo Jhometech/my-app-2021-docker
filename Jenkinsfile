@@ -16,7 +16,11 @@ pipeline{
     
     stage('push to docker hub'){
       steps{
-        echo "deploy to dev environment"
+        withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerPwd')]) {
+          sh "docker login -u kammana -p ${dockerPwd}"
+          sh "docker push kammana/2021myapp:v1"
+        }
+        
       }
     }
 
