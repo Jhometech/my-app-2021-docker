@@ -27,7 +27,7 @@ pipeline{
     stage('dev-deploy'){
       steps{
         sshagent(['docker-dev']) {
-            sh "ssh ec2-user@172.31.47.65 docker run -d -p 8080:8080 kammana/2021myapp:v1"
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.47.65 docker run -d -p 8080:8080 kammana/2021myapp:v1"
         }
       }
     }
