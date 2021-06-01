@@ -37,5 +37,5 @@ pipeline{
 }
 def getLatestCommitId(){
   def commitId = sh returnStdout: true, script: 'git rev-parse --short HEAD'
-  return = commitId
+  return commitId
 }
