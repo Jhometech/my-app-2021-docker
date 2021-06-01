@@ -11,7 +11,7 @@ pipeline{
 
     stage('Docker Build Image'){
       steps{
-        sh "docker build -t kammana/2021myapp:${getLatestCommitId()} . "
+        sh "docker build . -t kammana/2021myapp:${getLatestCommitId()}"
       }
     }
     
